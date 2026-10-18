@@ -19,13 +19,14 @@ A team skill set for Claude Code, Codex, Cursor and Copilot, shipped as a Claude
 | PR body | Summary (visual), Why (1-3 lines, links the issue if there is one), Evidence (before/after), Merge Danger. Plus any extra sections the repo's PR template asks for. |
 | Prototype | PM runs Claude Code in the repo; skill starts the app, captures the page from a browser, saves one self-contained HTML file, and publishes it as an artifact when in Claude. |
 | Prototype to code | Prototype is an input to `plan-it`. No separate skill. |
-| After implementing | Review in fresh-context subagents, then run `clean-it`, then stop with changes uncommitted. In `delegate-it`, each implementer subagent runs `clean-it` before committing its task instead. |
-| Visualize | HTML file (artifact when in Claude). |
+| After implementing | Review in fresh-context subagents, then run `clean-it`, then stop with changes uncommitted. In `delegate-it`, each implementer subagent runs `clean-it` before committing its task instead. Neither skill changes code in response to review; findings and concerns go to the user. |
+| Visualize | HTML page with a Mermaid flow chart (pinned CDN) and a numbered step list. Saved in `docs/plans/<slug>/visuals/` when tied to a plan, otherwise the OS temp folder; artifact when in Claude. |
 | Glossary and ADRs | `plan-it` reads `GLOSSARY.md` and ADRs when a repo has them; never creates or edits them. |
 | Review standards | Built-in baseline (scope, YAGNI, comment rules, Fowler smells) plus the repo's `CODING_STANDARDS.md` / `CONTRIBUTING.md`. A repo rule overrides the baseline. |
 | TDD | Test-first where the repo has a test setup; if none, ask before adding one. |
 | Delegate end state | Feature branch with one commit per task, reviewed by `review-it`, not pushed. |
 | Prototype browser | Claude in Chrome or the Claude browser pane when present; otherwise Playwright MCP. |
+| Prototype capture | `capture.js` runs in the page and POSTs the self-contained HTML to `receive.mjs`, a one-shot local Node receiver that writes the file. Changes are logged in a `PROTOTYPE CHANGES` comment that `plan-it` reads. |
 | Temporary code | Every skill that adds a temporary line (debug log, manual-test hook) tags it with `[TEMP-<4 hex>]`, so cleanup finds it by search. |
 | Cleanup | `clean-it` scans uncommitted changes (staged, unstaged, untracked), lists suspects with file and line, and removes only what the user approves. It touches only lines and files the diff added. With no user to confirm (a `delegate-it` subagent), it removes `[TEMP-…]` lines only and reports untagged suspects, which `delegate-it` lists in its final report. |
 | Research location | `docs/plans/<feature>/research/<topic>.md` when tied to a plan; `docs/research/<topic>.md` otherwise. |

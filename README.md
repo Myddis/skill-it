@@ -33,12 +33,12 @@ npx skills@latest add Myddis/skill-it
 
 ## Skills
 
-**Typed** skills run only when you type `/<name>`. **Auto** skills also start on their own when the agent sees the task fits. Skills marked _planned_ are not built yet.
+**Typed** skills run only when you type `/<name>`. **Auto** skills also start on their own when the agent sees the task fits.
 
 The usual path through a feature:
 
 ```
-prototype-it (PM) ──► plan-it ──► implement-it or delegate-it ──► you commit ──► pr-it
+prototype-it (optional, only for FE) ──► plan-it ──► implement-it or delegate-it ──► you commit ──► pr-it
 ```
 
 Click a skill to see its full guide.
@@ -46,7 +46,7 @@ Click a skill to see its full guide.
 ### Build a feature
 
 <details>
-<summary><b>plan-it</b>: Interviews you until nothing about the work is assumed, then writes a plan. <i>(planned)</i></summary>
+<summary><b><a href="./skills/plan-it/SKILL.md">plan-it</a></b>: Interviews you until nothing about the work is assumed, then writes a plan.</summary>
 
 - **What it does:** Asks questions in rounds, each with a recommended answer, until every decision is settled. Looks up facts in the code itself instead of asking you. Writes the agreed plan to a file.
 - **When to use it:** Every time you are about to build something, before any code is written.
@@ -57,20 +57,20 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>implement-it</b>: Builds the plan, has it reviewed and cleaned, and leaves the changes for you to commit. <i>(planned)</i></summary>
+<summary><b><a href="./skills/implement-it/SKILL.md">implement-it</a></b>: Builds the plan, has it reviewed and cleaned, and leaves the changes for you to commit.</summary>
 
-- **What it does:** Implements the plan, test-first where the repo has tests. Then runs `review-it` in fresh subagents and fixes what it finds, runs `clean-it`, and stops.
+- **What it does:** Implements the plan, test-first where the repo has tests. Then runs `review-it` in fresh subagents, runs `clean-it`, and stops. It changes nothing in response to the review: findings and its own concerns go to you.
 - **When to use it:** The plan fits in one agent session.
 - **How to start it:** Typed: `/implement-it`, pointing at the plan.
-- **What you get:** Uncommitted changes, plus the review and cleanup results.
+- **What you get:** Uncommitted changes, plus the review findings, its concerns, and what was cleaned up.
 - **Works with:** `plan-it` (input), `tdd`, `review-it`, `clean-it`, then `pr-it` after you commit.
 
 </details>
 
 <details>
-<summary><b>delegate-it</b>: Splits a large plan into tasks and builds them in parallel with subagents. <i>(planned)</i></summary>
+<summary><b><a href="./skills/delegate-it/SKILL.md">delegate-it</a></b>: Splits a large plan into tasks and builds them in parallel with subagents.</summary>
 
-- **What it does:** Breaks the plan into small end-to-end tasks, each noting which tasks must finish first. Runs a subagent per ready task, each in its own git worktree. Each subagent cleans its work and commits it. Merges everything into one feature branch and reviews the result.
+- **What it does:** Breaks the plan into small end-to-end tasks, each noting which tasks must finish first. Runs a subagent per ready task, each in its own git worktree. Each subagent cleans its work and commits it. Merges everything into one feature branch and reviews the result. Like `implement-it`, it changes nothing in response to the review: findings and concerns go to you.
 - **When to use it:** The plan is too big for one agent session.
 - **How to start it:** Typed: `/delegate-it`, pointing at the plan.
 - **What you get:** Task files in `docs/plans/<feature>/tasks/`, and a feature branch with one commit per task. Nothing is pushed. A report lists anything left for you to check.
@@ -79,7 +79,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>review-it</b>: Reviews a diff against the coding rules and against the plan. <i>(planned)</i></summary>
+<summary><b><a href="./skills/review-it/SKILL.md">review-it</a></b>: Reviews a diff against the coding rules and against the plan.</summary>
 
 - **What it does:** Two subagents with fresh context review the diff in parallel. One checks coding rules: a built-in baseline plus the repo's own `CODING_STANDARDS.md` or `CONTRIBUTING.md`. The other checks the diff against the plan: anything missing, wrong, or not asked for.
 - **When to use it:** Before committing or opening a PR, or whenever you want a second opinion on a branch.
@@ -90,7 +90,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>clean-it</b>: Removes debug logs, temporary code and stray files before you commit. <i>(planned)</i></summary>
+<summary><b><a href="./skills/clean-it/SKILL.md">clean-it</a></b>: Removes debug logs, temporary code and stray files before you commit.</summary>
 
 - **What it does:** Scans your uncommitted changes. Finds lines tagged `[TEMP-xxxx]` and untagged leftovers such as debug logs, commented-out code, stray TODOs and temp files. Lists each with file and line, and removes only what you approve. Touches only what your changes added.
 - **When to use it:** Right before you commit.
@@ -101,7 +101,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>pr-it</b>: Writes the pull request description. <i>(planned)</i></summary>
+<summary><b><a href="./skills/pr-it/SKILL.md">pr-it</a></b>: Writes the pull request description.</summary>
 
 - **What it does:** Writes a PR body with four sections: Summary (a small diagram or diff sketch), Why, Evidence (before and after), and Merge Danger (how reversible the change is and what it could affect). Adds any sections the repo's PR template asks for. It does not open the PR.
 - **When to use it:** After you have committed, before opening the PR.
@@ -112,11 +112,11 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>prototype-it</b>: Turns a page of the running app into a clickable HTML prototype you can change and share. <i>(planned)</i></summary>
+<summary><b><a href="./skills/prototype-it/SKILL.md">prototype-it</a></b>: Turns a page of the running app into a clickable HTML prototype you can change and share.</summary>
 
 - **What it does:** Starts the app, opens the page in a browser, and captures it into one self-contained HTML file that looks exactly like the real page. You then ask for changes to the prototype instead of the code.
 - **When to use it:** A product manager (or anyone) wants to try out a change to the UI before a developer builds it.
-- **How to start it:** Typed: `/prototype-it`, run in Claude Code inside the repo. The app must run locally.
+- **How to start it:** Typed: `/prototype-it`, run inside the repo. Needs the app running locally, Node.js, and a browser tool (Claude in Chrome, the Claude desktop browser, or the Playwright MCP server).
 - **What you get:** An HTML file that opens with a double-click, plus a shareable artifact link when run in Claude.
 - **Works with:** `plan-it`, which takes the prototype as input.
 
@@ -125,7 +125,7 @@ Click a skill to see its full guide.
 ### Anytime helpers
 
 <details>
-<summary><b>debug-it</b>: Finds the cause of a bug by first building a check that reliably fails. <i>(planned)</i></summary>
+<summary><b><a href="./skills/debug-it/SKILL.md">debug-it</a></b>: Finds the cause of a bug by first building a check that reliably fails.</summary>
 
 - **What it does:** Builds a fast, repeatable command that fails on the bug, before reading code for theories. Then shrinks the case, ranks hypotheses, tests them one at a time, fixes the bug, and adds a regression test.
 - **When to use it:** Something is broken, throwing, failing or slow, and the cause is not obvious.
@@ -136,7 +136,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>explain-it</b>: Re-explains the last message in simpler words. <i>(planned)</i></summary>
+<summary><b><a href="./skills/explain-it/SKILL.md">explain-it</a></b>: Re-explains the last message in simpler words.</summary>
 
 - **What it does:** Restates the agent's last message with the missing context, in plain language and the project's own terms.
 - **When to use it:** A reply did not make sense to you.
@@ -147,18 +147,18 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>visualize-it</b>: Draws a multi-step process as a flow chart. <i>(planned)</i></summary>
+<summary><b><a href="./skills/visualize-it/SKILL.md">visualize-it</a></b>: Draws a multi-step process as a flow chart.</summary>
 
 - **What it does:** Turns a process, flow or sequence of steps into a flow chart.
 - **When to use it:** A process has enough steps that text is hard to follow.
 - **How to start it:** Auto, or typed: `/visualize-it`.
-- **What you get:** An HTML file, plus an artifact link when run in Claude.
+- **What you get:** An HTML page in `docs/plans/<feature>/visuals/` when tied to a plan, otherwise in your OS temp folder, plus an artifact link when run in Claude. The diagram loads from a CDN, so viewing it needs internet.
 - **Works with:** `explain-it`.
 
 </details>
 
 <details>
-<summary><b>research-it</b>: Researches a question in official sources and writes up the findings. <i>(planned)</i></summary>
+<summary><b><a href="./skills/research-it/SKILL.md">research-it</a></b>: Researches a question in official sources and writes up the findings.</summary>
 
 - **What it does:** A background agent reads primary sources (official docs, source code, specs) and writes the findings to a markdown file, citing each claim.
 - **When to use it:** You need facts about a library, API or tool before deciding something.
@@ -169,7 +169,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>handoff-it</b>: Packs the current session into a document a fresh agent can continue from. <i>(planned)</i></summary>
+<summary><b><a href="./skills/handoff-it/SKILL.md">handoff-it</a></b>: Packs the current session into a document a fresh agent can continue from.</summary>
 
 - **What it does:** Summarises the session: what was done, what is left, and which skills the next agent should use. Points to existing files instead of copying them.
 - **When to use it:** The session is getting long, or someone else will continue the work.
@@ -180,7 +180,7 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b>retro-it</b>: Suggests how to improve the agent's setup after a session. <i>(planned)</i></summary>
+<summary><b><a href="./skills/retro-it/SKILL.md">retro-it</a></b>: Suggests how to improve the agent's setup after a session.</summary>
 
 - **What it does:** Reviews a session and suggests improvements to the agent's environment: missing lint rules or tests, unclear instructions, slow tool calls, missing access to information.
 - **When to use it:** After a session where the agent struggled or made avoidable mistakes.
@@ -195,7 +195,7 @@ Click a skill to see its full guide.
 Other skills load these. You rarely need to start them yourself.
 
 <details>
-<summary><b>tdd</b>: Rules for test-first development and for writing tests worth keeping. <i>(planned)</i></summary>
+<summary><b><a href="./skills/tdd/SKILL.md">tdd</a></b>: Rules for test-first development and for writing tests worth keeping.</summary>
 
 - **What it does:** Guides the red-green loop: one failing test, then just enough code to pass it, one slice at a time. Defines what a good test is and which patterns to avoid.
 - **When to use it:** Building or fixing code in a repo with a test setup.

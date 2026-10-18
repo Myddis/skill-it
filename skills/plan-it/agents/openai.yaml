@@ -1,0 +1,5 @@
+interface:
+  display_name: "Plan It"
+  short_description: "Interview until nothing is assumed, then write the plan"
+policy:
+  allow_implicit_invocation: false

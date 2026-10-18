@@ -1,0 +1,3 @@
+interface:
+  display_name: "Visualize It"
+  short_description: "Draw a process as a flow chart page"

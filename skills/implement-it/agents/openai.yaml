@@ -1,0 +1,5 @@
+interface:
+  display_name: "Implement It"
+  short_description: "Build a plan, review, clean, leave uncommitted"
+policy:
+  allow_implicit_invocation: false

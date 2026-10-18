@@ -1,0 +1,5 @@
+interface:
+  display_name: "Prototype It"
+  short_description: "Capture an app page as an editable HTML prototype"
+policy:
+  allow_implicit_invocation: false

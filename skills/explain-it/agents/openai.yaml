@@ -1,0 +1,3 @@
+interface:
+  display_name: "Explain It"
+  short_description: "Re-explain the last message simply"

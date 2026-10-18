@@ -1,12 +1,26 @@
 {
   "name": "skill-it",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Team agent skills: plan it, implement it, review it, PR it, prototype it.",
   "author": {
     "name": "Myddis"
   },
   "license": "MIT",
   "skills": [
+    "./skills/plan-it",
+    "./skills/implement-it",
+    "./skills/delegate-it",
+    "./skills/review-it",
+    "./skills/clean-it",
+    "./skills/pr-it",
+    "./skills/prototype-it",
+    "./skills/debug-it",
+    "./skills/explain-it",
+    "./skills/visualize-it",
+    "./skills/research-it",
+    "./skills/handoff-it",
+    "./skills/retro-it",
+    "./skills/tdd",
     "./skills/writing-for-agents"
   ]
 }

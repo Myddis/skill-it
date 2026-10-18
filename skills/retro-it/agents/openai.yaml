@@ -1,0 +1,5 @@
+interface:
+  display_name: "Retro It"
+  short_description: "Suggest agent setup improvements after a session"
+policy:
+  allow_implicit_invocation: false

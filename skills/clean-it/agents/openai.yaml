@@ -1,0 +1,3 @@
+interface:
+  display_name: "Clean It"
+  short_description: "Remove temporary code and files before committing"

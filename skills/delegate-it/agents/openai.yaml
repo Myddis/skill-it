@@ -1,0 +1,5 @@
+interface:
+  display_name: "Delegate It"
+  short_description: "Split a big plan into tasks run by subagents"
+policy:
+  allow_implicit_invocation: false
