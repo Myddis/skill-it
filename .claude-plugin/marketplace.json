@@ -1,0 +1,14 @@
+{
+  "name": "skill-it",
+  "owner": {
+    "name": "Myddis"
+  },
+  "description": "Marketplace for the skill-it plugin.",
+  "plugins": [
+    {
+      "name": "skill-it",
+      "source": "./",
+      "description": "Team agent skills: plan it, implement it, review it, PR it, prototype it."
+    }
+  ]
+}

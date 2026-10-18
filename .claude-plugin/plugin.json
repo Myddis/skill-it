@@ -1,0 +1,12 @@
+{
+  "name": "skill-it",
+  "version": "0.1.0",
+  "description": "Team agent skills: plan it, implement it, review it, PR it, prototype it.",
+  "author": {
+    "name": "Myddis"
+  },
+  "license": "MIT",
+  "skills": [
+    "./skills/writing-for-agents"
+  ]
+}
