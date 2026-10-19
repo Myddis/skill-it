@@ -13,7 +13,7 @@ Use the plan the user passed. With no argument, list the folders under `docs/pla
 
 Read `GLOSSARY.md` and any ADRs in the area you're touching, if they exist.
 
-The plan is the **scope**. Build every behaviour and decision in it and nothing beyond it. When the plan turns out wrong, incomplete or contradicted by the code, stop and ask the user; a gap in the plan is a decision, and decisions are theirs.
+The plan is the **scope**. Build every behaviour and decision in it and nothing beyond it. When the plan turns out wrong, incomplete or contradicted by the code, stop and ask the user; a gap in the plan is a decision, and decisions are theirs. Ask through the harness's question tool when it has one: 2-4 concrete options, your recommended option first and marked "(Recommended)".
 
 ## 2. Build
 

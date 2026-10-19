@@ -12,7 +12,7 @@ Run a **retrospective**: suggest changes to the coding agent's **environment** t
 1. Call the Skill tool with "writing-for-agents" for how to write instructions agents follow.
 2. Read the session the user named, from the conversation or the session logs on this machine. Default to the current session.
 3. Look for candidates in each category below.
-4. Present them most severe first. For each: what went wrong (with the moment in the session), the change you suggest, and where it goes (file and section). Make no changes until the user picks which to apply.
+4. Present them most severe first. For each: what went wrong (with the moment in the session), the change you suggest, and where it goes (file and section). Then ask which to apply, as a multi-select through the harness's question tool when it has one. Make no changes until the user picks.
 
 ## Categories
 

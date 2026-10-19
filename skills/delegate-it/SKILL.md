@@ -30,7 +30,7 @@ The split is done when every Behaviour item and Decision in the plan belongs to 
 
 ## 3. Agree the split
 
-Show the tasks as a numbered list: title, blocked by, and what it delivers. Ask whether the size feels right, whether the blocking edges are right, and whether any task should be merged or split. Iterate until the user approves.
+Show the tasks as a numbered list: title, blocked by, and what it delivers. Then ask whether the size feels right, whether the blocking edges are right, and whether any task should be merged or split, through the harness's question tool when it has one (concrete options, your recommendation first and marked "(Recommended)"). Iterate until the user approves.
 
 Then write one file per task, numbered in dependency order:
 

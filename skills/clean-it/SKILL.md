@@ -35,7 +35,7 @@ This step is done when every added line and every new file has been checked agai
 
 ## 3. Confirm
 
-Show one numbered list, tagged items first, each with `file:line` (or the file path) and, for suspects, the reason it looks temporary. Ask which to remove. Say plainly that removing a new file deletes it permanently, since git never tracked it.
+Show one numbered list, tagged items first, each with `file:line` (or the file path) and, for suspects, the reason it looks temporary. Ask which to remove: through the harness's question tool when it has one, as a multi-select with "All tagged items (Recommended)" first and the suspects grouped by kind; otherwise ask the user to reply with the numbers, or "all". Say plainly that removing a new file deletes it permanently, since git never tracked it.
 
 If nothing was found, say so and stop.
 

@@ -11,7 +11,7 @@ The prototype copies the page's look, not its logic: no data fetching, routing o
 
 ## 1. Agree what to capture
 
-Ask, if the user hasn't said:
+Ask, if the user hasn't said, through the harness's question tool when it has one (likely pages and states as options):
 
 - which page, and in which state (logged in as whom, which data, which tab open)
 - what change they want to try, if they know yet

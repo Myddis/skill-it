@@ -1,0 +1,5 @@
+interface:
+  display_name: "Explore It"
+  short_description: "Compare possible solutions and pick the best"
+policy:
+  allow_implicit_invocation: false

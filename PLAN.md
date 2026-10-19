@@ -35,6 +35,7 @@ A team skill set for Claude Code, Codex, Cursor and Copilot, shipped as a Claude
 
 | Skill | Source | Invocation | Job |
 |---|---|---|---|
+| `explore-it` | `codebase-design`'s "Design It Twice" | typed | When the solution is unknown: frame the problem, compare 2-4 radically different options with evidence, let the user choose, write `options.md` for `plan-it`. |
 | `plan-it` | `grilling` + `to-spec` | typed | Interview in rounds until nothing is assumed, then write `plan.md`. Accepts a prototype as input. |
 | `implement-it` | `implement` | typed | Build the plan, using `tdd` at agreed seams, then run `review-it` in subagents and `clean-it`, and stop uncommitted. |
 | `review-it` | `code-review` | auto | Review the branch diff on two axes (standards, plan) in parallel fresh-context subagents. |
@@ -56,7 +57,7 @@ A team skill set for Claude Code, Codex, Cursor and Copilot, shipped as a Claude
 ```
 PM:   prototype-it ──share HTML──┐
                                  ▼
-Dev:  plan-it ──► implement-it (fits one session)  ──► review-it ──► clean-it ──► you commit ──► pr-it
+Dev:  [explore-it ──►] plan-it ──► implement-it (fits one session)  ──► review-it ──► clean-it ──► you commit ──► pr-it
               └─► delegate-it  (too big for one; subagents clean-it per task) ──► review-it ──► pr-it
 
 Anytime: debug-it · explain-it · visualize-it · research-it · handoff-it · retro-it
@@ -85,6 +86,7 @@ Flat `skills/` with no buckets: every skill ships, so there is no subset to cura
 
 ```
 docs/plans/<feature>/     # gitignored
+  options.md
   plan.md
   tasks/NN-<slug>.md
   prototype/<name>.html

@@ -38,12 +38,24 @@ npx skills@latest add Myddis/skill-it
 The usual path through a feature:
 
 ```
-prototype-it (optional, only for FE) ──► plan-it ──► implement-it or delegate-it ──► you commit ──► pr-it
+explore-it (optional, when the solution is unclear) ─┐
+prototype-it (optional, only for FE) ────────────────┴─► plan-it ──► implement-it or delegate-it ──► you commit ──► pr-it
 ```
 
 Click a skill to see its full guide.
 
 ### Build a feature
+
+<details>
+<summary><b><a href="./skills/explore-it/SKILL.md">explore-it</a></b>: Compares possible solutions to a problem and helps you pick the best one.</summary>
+
+- **What it does:** Frames the problem (goals, constraints, non-goals), then lays out 2-4 radically different solutions. Backs each with evidence from the code, research, small throwaway experiments, or diagrams. Compares them in one table (effort, risk, how reversible) with a clear recommendation, and lets you choose.
+- **When to use it:** You know the problem but not the solution. Use `plan-it` directly when you already know what to build.
+- **How to start it:** Typed: `/explore-it`.
+- **What you get:** `docs/plans/<feature>/options.md` with the options, the comparison, the decision and why. Gitignored like plans.
+- **Works with:** `research-it` and `visualize-it` (evidence), `plan-it` (next step: pass it the options file).
+
+</details>
 
 <details>
 <summary><b><a href="./skills/plan-it/SKILL.md">plan-it</a></b>: Interviews you until nothing about the work is assumed, then writes a plan.</summary>
@@ -52,7 +64,7 @@ Click a skill to see its full guide.
 - **When to use it:** Every time you are about to build something, before any code is written.
 - **How to start it:** Typed: `/plan-it`. You can pass a prototype file as input.
 - **What you get:** `docs/plans/<feature>/plan.md`. The folder is gitignored, so plans are working files and never committed.
-- **Works with:** `prototype-it` (input), `implement-it` or `delegate-it` (next step).
+- **Works with:** `explore-it` and `prototype-it` (input), `implement-it` or `delegate-it` (next step).
 
 </details>
 
