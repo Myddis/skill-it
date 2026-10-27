@@ -14,7 +14,7 @@ When a skill is added, renamed or removed, update all three in the same change:
 - the skill's `<details>` block in `README.md`: a one-line summary, then What it does, When to use it, How to start it, What you get, Works with. Drop the _(planned)_ tag and link the name to its `SKILL.md` once it is built.
 - the skill table in `PLAN.md`
 
-Run `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json` after touching either file in `.claude-plugin/`; the root `CLAUDE.md` warning is expected, since that file guides work on this repo rather than plugin users. Bump `version` in `plugin.json` on every release, since installed copies update only when it changes.
+Run `claude plugin validate . --strict` and `claude plugin validate .claude-plugin/plugin.json` after touching either file in `.claude-plugin/`; the root `CLAUDE.md` warning is expected, since that file guides work on this repo rather than plugin users. Release with `/release`, a repo-only skill in `.claude/skills/` that never ships and skips the three updates above.
 
 ## Naming
 
@@ -31,7 +31,7 @@ Each skill is either typed or auto, and both harness files must agree:
 
 `agents/openai.yaml` always carries `interface.display_name` and `interface.short_description`.
 
-A skill reaches an auto skill by saying `Call the Skill tool with "<name>"`, one call per skill. A typed skill is unreachable from other skills; tell the user to run `/<name>` instead.
+A skill reaches an auto skill by saying `Call the Skill tool with "<name>"`, one call per skill. A typed skill is unreachable from other skills; tell the user to run it instead, written in the form the current skill was started with, plugin prefix included (`/skill-it:<name>` in Claude Code; installs via `npx skills` have no prefix).
 
 ## Writing
 

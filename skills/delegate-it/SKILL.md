@@ -90,4 +90,4 @@ Remove every worktree you created. Then report:
 - clean-it's untagged suspects from every task
 - test results on the feature branch
 
-Nothing is pushed. Tell the user the next step: check the branch, then run `/pr-it`.
+Nothing is pushed. Tell the user the next step: check the branch, then run `pr-it`, written in the form this skill was started with, plugin prefix included (`/skill-it:pr-it` in Claude Code).

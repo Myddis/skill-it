@@ -5,7 +5,7 @@ argument-hint: "What problem are you trying to solve?"
 disable-model-invocation: true
 ---
 
-Find the best solution to a problem whose solution isn't known yet. Your first idea is unlikely to be the best, so lay out **radically different** options side by side, gather evidence, and let the user choose. The chosen solution then goes to `/plan-it`, which settles the details.
+Find the best solution to a problem whose solution isn't known yet. Your first idea is unlikely to be the best, so lay out **radically different** options side by side, gather evidence, and let the user choose. The chosen solution then goes to `plan-it`, which settles the details.
 
 Ask every question through the harness's question tool when it has one: 2-4 concrete options, your recommendation first and marked "(Recommended)". Without one, ask in short numbered text.
 
@@ -87,4 +87,4 @@ Details the choice leaves open, for the planning interview.
 
 ## 7. Hand over
 
-Show the file path, then tell the user the next step: run `/plan-it docs/plans/<slug>/options.md`.
+Show the file path, then tell the user the next step: run `plan-it docs/plans/<slug>/options.md`, written in the form this skill was started with, plugin prefix included (`/skill-it:plan-it` in Claude Code).

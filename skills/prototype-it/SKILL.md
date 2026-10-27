@@ -5,7 +5,7 @@ argument-hint: "Which page, and what would you like to try?"
 disable-model-invocation: true
 ---
 
-Capture a page of the running app as a **prototype**: one self-contained HTML file that looks exactly like the real page and opens with a double-click. The user, often a product manager, then asks for changes to the prototype instead of the code, and shares it with a developer when it's ready. The developer passes it to `/plan-it`.
+Capture a page of the running app as a **prototype**: one self-contained HTML file that looks exactly like the real page and opens with a double-click. The user, often a product manager, then asks for changes to the prototype instead of the code, and shares it with a developer when it's ready. The developer passes it to `plan-it`.
 
 The prototype copies the page's look, not its logic: no data fetching, routing or app scripts come along. Interactions the user wants to try are rebuilt as small inline scripts.
 
@@ -53,4 +53,4 @@ After each change, add one line to the `PROTOTYPE CHANGES` list in the comment a
 
 ## 7. Share
 
-If the harness can publish an artifact (Claude), publish the file and give the user the link. Always give the file path too. Tell the user the developer's next step: run `/plan-it` with the prototype's path.
+If the harness can publish an artifact (Claude), publish the file and give the user the link. Always give the file path too. Tell the user the developer's next step: run `plan-it` with the prototype's path, written in the form this skill was started with, plugin prefix included (`/skill-it:plan-it` in Claude Code).

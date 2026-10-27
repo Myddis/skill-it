@@ -45,4 +45,4 @@ Leave everything uncommitted: the user commits. Report:
 - your own concerns: anything in the plan that looked risky, unclear or wrong while building
 - what clean-it removed
 
-Then tell the user the next step: review the diff, commit, and run `/pr-it`.
+Then tell the user the next step: review the diff, commit, and run `pr-it`, written in the form this skill was started with, plugin prefix included (`/skill-it:pr-it` in Claude Code).

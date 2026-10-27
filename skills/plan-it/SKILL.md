@@ -90,7 +90,7 @@ The plan is done when every decision from the interview appears in it exactly on
 
 ## 4. Hand over
 
-Show the plan's path, then tell the user the next step, using the size decision:
+Show the plan's path, then tell the user the next step, using the size decision. Write each command in the form this skill was started with, plugin prefix included (`/skill-it:implement-it` in Claude Code):
 
-- Fits one session: run `/implement-it docs/plans/<slug>/plan.md`.
-- Too big: run `/delegate-it docs/plans/<slug>/plan.md`.
+- Fits one session: run `implement-it docs/plans/<slug>/plan.md`.
+- Too big: run `delegate-it docs/plans/<slug>/plan.md`.

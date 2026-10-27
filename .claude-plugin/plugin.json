@@ -1,6 +1,6 @@
 {
   "name": "skill-it",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Team agent skills: plan it, implement it, review it, PR it, prototype it.",
   "author": {
     "name": "Myddis"
