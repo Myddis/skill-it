@@ -1,35 +1,74 @@
 # skill-it
 
-Agent skills for planning, building, reviewing and prototyping, replacing vibe coding and AI slop with real agentic engineering. Works in Claude Code, Codex, Copilot and other Agent Skills harnesses.
+**Real agentic engineering, not vibe coding.**
+
+Agent skills for planning and building for real engineers. Works in Claude Code, Codex, Copilot and other Agent Skills harnesses.
 
 ## Install
 
-Claude Code:
+<details>
+<summary><b>Claude Code</b></summary>
 
 ```bash
 claude plugin marketplace add Myddis/skill-it
 claude plugin install skill-it@skill-it
 ```
 
-Codex:
+To update, run these and restart Claude Code:
+
+```bash
+claude plugin marketplace update skill-it
+claude plugin update skill-it@skill-it
+```
+
+</details>
+
+<details>
+<summary><b>Codex</b></summary>
 
 ```bash
 codex plugin marketplace add Myddis/skill-it
 codex plugin add skill-it@skill-it
 ```
 
-GitHub Copilot CLI:
+Codex refreshes the marketplace on startup. To update by hand, run this and restart Codex:
+
+```bash
+codex plugin marketplace upgrade skill-it
+```
+
+</details>
+
+<details>
+<summary><b>GitHub Copilot CLI</b></summary>
 
 ```bash
 copilot plugin marketplace add Myddis/skill-it
 copilot plugin install skill-it@skill-it
 ```
 
-Cursor and other agents (copies files; update by hand):
+To update:
+
+```bash
+copilot plugin update skill-it
+```
+
+</details>
+
+<details>
+<summary><b>Cursor and other agents</b> (copies files)</summary>
 
 ```bash
 npx skills@latest add Myddis/skill-it
 ```
+
+To update:
+
+```bash
+npx skills@latest update
+```
+
+</details>
 
 ## Skills
 
