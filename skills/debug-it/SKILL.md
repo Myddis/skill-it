@@ -107,7 +107,7 @@ Tool preference:
 2. **Targeted logs** at the boundaries that distinguish hypotheses.
 3. Never "log everything and grep".
 
-**Tag every debug log** with `[TEMP-<4 hex>]` in a comment on the same line, e.g. `[TEMP-a4f2]`, and give throwaway files a name containing `TEMP-<hex>`. `clean-it` removes everything carrying that tag; untagged logs survive.
+**Tag every debug log** with `[TEMP-<4 hex>]` in a comment on the same line, e.g. `[TEMP-a4f2]`, and give throwaway files a name containing `TEMP-<hex>`. Phase 6 removes everything carrying that tag; untagged logs survive.
 
 **Perf branch.** For performance regressions, logs are usually wrong. Instead: establish a baseline measurement (timing harness, `performance.now()`, profiler, query plan), then bisect. Measure first, fix second.
 
@@ -133,5 +133,5 @@ Required before declaring done:
 
 - [ ] Original repro no longer reproduces (re-run the Phase 1 loop)
 - [ ] Regression test passes (or absence of seam is documented)
-- [ ] Every `[TEMP-...]` line and file removed: call the Skill tool with "clean-it"
+- [ ] Every `[TEMP-...]` line and file removed: search the uncommitted changes for `TEMP-[0-9a-f]{4}` and delete each hit
 - [ ] The hypothesis that turned out correct is reported to the user, so it can go into the PR and the next debugger learns from it

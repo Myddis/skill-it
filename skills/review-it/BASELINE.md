@@ -9,6 +9,7 @@ The rules every review applies, in every repo, on top of the repo's own standard
 - **Reinvention:** new code doing what an existing helper, the standard library, the platform or an installed dependency already does. → call the existing one.
 - **Symptom patch:** a fix that hides the failure (a special case, a swallowed error, a retry) instead of fixing its cause. → fix the cause.
 - **Weakened safety:** validation, error handling, security checks or accessibility removed or skipped to make the change smaller. → restore it.
+- **Leftover:** temporary code the change added: debug output (`console.log`, `print`, `debugger`), commented-out code, new `TODO`/`FIXME`, test focus or skips (`.only`, `.skip`), hard-coded test overrides, by-product files (logs, dumps, `*.orig`). Skip what the repo does on purpose, such as logging through `console.log`. → delete it.
 
 ## Comments
 

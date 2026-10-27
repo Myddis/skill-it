@@ -65,10 +65,10 @@ Each implementer's brief:
 - build exactly what the task file says; if the task or plan looks wrong, stop and report the concern rather than deciding
 - if the repo has a test setup, call the Skill tool with "tdd" and work test-first
 - tag every temporary line `[TEMP-<4 hex>]` in a comment on the same line
-- before committing, call the Skill tool with "clean-it"; with no user to confirm it removes tagged lines only and returns untagged suspects
+- before committing, search the changes for `TEMP-[0-9a-f]{4}`, delete every tagged line and file, and re-run the task's tests
 - commit the task as one commit, with the task title as the message
 - merge the feature branch's latest tip into its own branch and resolve conflicts
-- report: the commit, test results, clean-it's suspects, and any concerns
+- report: the commit, test results, and any concerns
 
 When an implementer reports, merge its branch into the feature branch, set the task's **Status** to `done`, and recompute the frontier. Start subagents for any newly unblocked tasks. A task whose implementer raised a concern instead of finishing stays `blocked`; tasks behind it wait, and the concern goes to the user.
 
@@ -87,7 +87,6 @@ Remove every worktree you created. Then report:
 - the feature branch and its commits, one per task
 - tasks waiting on a concern, with the concern
 - review-it's findings, both axes, as it reported them
-- clean-it's untagged suspects from every task
 - test results on the feature branch
 
 Nothing is pushed. Tell the user the next step: check the branch, then run `pr-it`, written in the form this skill was started with, plugin prefix included (`/skill-it:pr-it` in Claude Code).

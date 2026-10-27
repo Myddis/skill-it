@@ -1,6 +1,6 @@
 # skill-it
 
-Agent skills for planning, building, reviewing and prototyping, for developers and product managers. Works in Claude Code, Codex, Copilot and other Agent Skills harnesses.
+Agent skills for planning, building, reviewing and prototyping, replacing vibe coding and AI slop with real agentic engineering. Works in Claude Code, Codex, Copilot and other Agent Skills harnesses.
 
 ## Install
 
@@ -37,10 +37,30 @@ npx skills@latest add Myddis/skill-it
 
 The usual path through a feature:
 
+```mermaid
+flowchart LR
+  subgraph unknown["If solution is unknown"]
+    explore["explore-it"]
+    proto["prototype-it<br/>FE only"]
+  end
+  explore -.-> plan["plan-it"]
+  proto -.-> plan
+  plan -->|fits one session| impl["implement-it<br/>build, clean, review"]
+  plan -->|too big| deleg["delegate-it<br/>build, commit, review"]
+  impl --> commit(["you check findings<br/>and commit"])
+  deleg --> check(["you check<br/>the branch"])
+  commit --> pr["pr-it"]
+  check --> pr
+  pr --> open(["you push and<br/>open the PR"])
+  classDef trigger fill:#e0c2ff,stroke:#9b59d6,color:#1a1a1a
+  classDef work fill:#c2c2ff,stroke:#6666d6,color:#1a1a1a
+  classDef optional fill:#c2c2ff,stroke:#6666d6,stroke-dasharray:5 5,color:#1a1a1a
+  class commit,check,open trigger
+  class plan,impl,deleg,pr work
+  class explore,proto optional
 ```
-explore-it (optional, when the solution is unclear) ─┐
-prototype-it (optional, only for FE) ────────────────┴─► plan-it ──► implement-it or delegate-it ──► you commit ──► pr-it
-```
+
+Blue boxes are skills; purple ones are your steps. Most features start at `plan-it`: the dashed skills are only for when you don't yet know the solution.
 
 Click a skill to see its full guide.
 
@@ -71,11 +91,11 @@ Click a skill to see its full guide.
 <details>
 <summary><b><a href="./skills/implement-it/SKILL.md">implement-it</a></b>: Builds the plan, has it reviewed and cleaned, and leaves the changes for you to commit.</summary>
 
-- **What it does:** Implements the plan, test-first where the repo has tests. Then runs `review-it` in fresh subagents, runs `clean-it`, and stops. It changes nothing in response to the review: findings and its own concerns go to you.
+- **What it does:** Implements the plan, test-first where the repo has tests. Then removes the temporary lines it tagged, runs `review-it` in fresh subagents, and stops. It changes nothing in response to the review: findings and its own concerns go to you.
 - **When to use it:** The plan fits in one agent session.
 - **How to start it:** Typed: `/skill-it:implement-it`, pointing at the plan.
 - **What you get:** Uncommitted changes, plus the review findings, its concerns, and what was cleaned up.
-- **Works with:** `plan-it` (input), `tdd`, `review-it`, `clean-it`, then `pr-it` after you commit.
+- **Works with:** `plan-it` (input), `tdd`, `review-it`, then `pr-it` after you commit.
 
 </details>
 
@@ -86,29 +106,18 @@ Click a skill to see its full guide.
 - **When to use it:** The plan is too big for one agent session.
 - **How to start it:** Typed: `/skill-it:delegate-it`, pointing at the plan.
 - **What you get:** Task files in `docs/plans/<feature>/tasks/`, and a feature branch with one commit per task. Nothing is pushed. A report lists anything left for you to check.
-- **Works with:** `plan-it` (input), `tdd`, `clean-it`, `review-it`, `pr-it`.
+- **Works with:** `plan-it` (input), `tdd`, `review-it`, `pr-it`.
 
 </details>
 
 <details>
 <summary><b><a href="./skills/review-it/SKILL.md">review-it</a></b>: Reviews a diff against the coding rules and against the plan.</summary>
 
-- **What it does:** Two subagents with fresh context review the diff in parallel. One checks coding rules: a built-in baseline plus the repo's own `CODING_STANDARDS.md` or `CONTRIBUTING.md`. The other checks the diff against the plan: anything missing, wrong, or not asked for.
+- **What it does:** Two subagents with fresh context review the diff in parallel. One checks coding rules, including leftover debug code: a built-in baseline plus the repo's own `CODING_STANDARDS.md` or `CONTRIBUTING.md`. The other checks the diff against the plan: anything missing, wrong, or not asked for.
 - **When to use it:** Before committing or opening a PR, or whenever you want a second opinion on a branch.
 - **How to start it:** Auto, or typed: `/skill-it:review-it`. `implement-it` and `delegate-it` run it for you.
 - **What you get:** Two lists of findings, one for rules and one for the plan.
-- **Works with:** `implement-it`, `delegate-it`, `clean-it`.
-
-</details>
-
-<details>
-<summary><b><a href="./skills/clean-it/SKILL.md">clean-it</a></b>: Removes debug logs, temporary code and stray files before you commit.</summary>
-
-- **What it does:** Scans your uncommitted changes. Finds lines tagged `[TEMP-xxxx]` and untagged leftovers such as debug logs, commented-out code, stray TODOs and temp files. Lists each with file and line, and removes only what you approve. Touches only what your changes added.
-- **When to use it:** Right before you commit.
-- **How to start it:** Auto, or typed: `/skill-it:clean-it`. `implement-it` and `delegate-it` run it for you.
-- **What you get:** A clean diff. When run inside a `delegate-it` subagent, it removes tagged lines only and reports the rest.
-- **Works with:** `implement-it`, `delegate-it`, `debug-it` (which tags its debug logs).
+- **Works with:** `implement-it`, `delegate-it`.
 
 </details>
 
@@ -143,7 +152,7 @@ Click a skill to see its full guide.
 - **When to use it:** Something is broken, throwing, failing or slow, and the cause is not obvious.
 - **How to start it:** Auto, or typed: `/skill-it:debug-it`.
 - **What you get:** A fix, a regression test where one fits, and the confirmed cause.
-- **Works with:** `clean-it` (removes its tagged debug logs).
+- **Works with:** `review-it`, to check the fix before you commit.
 
 </details>
 
@@ -159,13 +168,13 @@ Click a skill to see its full guide.
 </details>
 
 <details>
-<summary><b><a href="./skills/visualize-it/SKILL.md">visualize-it</a></b>: Draws a multi-step process as a flow chart.</summary>
+<summary><b><a href="./skills/visualize-it/SKILL.md">visualize-it</a></b>: Draws a process or system as a Mermaid diagram.</summary>
 
-- **What it does:** Turns a process, flow or sequence of steps into a flow chart.
-- **When to use it:** A process has enough steps that text is hard to follow.
+- **What it does:** Turns a process, architecture, sequence of calls, schema, lifecycle or roadmap into a Mermaid diagram (flowchart, sequence, ER, state or timeline), with flowchart nodes coloured by role. For a repo or service, it builds the diagram from the real code and config and lists anything it could not verify.
+- **When to use it:** A process has enough steps that text is hard to follow, or a flow should be documented next to the code.
 - **How to start it:** Auto, or typed: `/skill-it:visualize-it`.
-- **What you get:** An HTML page in `docs/plans/<feature>/visuals/` when tied to a plan, otherwise in your OS temp folder, plus an artifact link when run in Claude. The diagram loads from a CDN, so viewing it needs internet.
-- **Works with:** `explain-it`.
+- **What you get:** When explaining, an HTML page in `docs/plans/<feature>/visuals/` when tied to a plan, otherwise in your OS temp folder, plus an artifact link when run in Claude; the diagram loads from a CDN, so viewing it needs internet. When asked to document or keep it in the repo, a Mermaid block in `docs/<topic>.md` (or the file you name) that GitHub renders.
+- **Works with:** `explain-it`, `explore-it`.
 
 </details>
 
